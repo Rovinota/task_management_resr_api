@@ -99,7 +99,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  void onTapNextButton() {}
+  void onTapNextButton() {
+    Navigator.pop(context);
+  }
 
   void _onTapForgetPasswordButton() {}
   void _onTapSignInButton() {

@@ -1,20 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:task_management_resr_api/ui/Utils/AppColors.dart';
-import 'package:task_management_resr_api/ui/screens/reset_password_screen.dart';
 import 'package:task_management_resr_api/ui/screens/sign_in_screen.dart';
 import 'package:task_management_resr_api/ui/widgets/screen_background.dart';
 
-class forgot_password_otp_screen extends StatefulWidget {
-  const forgot_password_otp_screen({super.key});
+import 'forgot_password_otp_screen.dart';
+
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
-  State<forgot_password_otp_screen> createState() => _forgot_password_otp_screenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _forgot_password_otp_screenState extends State<forgot_password_otp_screen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -29,15 +29,15 @@ class _forgot_password_otp_screenState extends State<forgot_password_otp_screen>
                     const SizedBox(
                       height: 82,
                     ),
-                    Text("Pin Verification",
+                    Text("Set New password",
                         style: textTheme.displaySmall
                             ?.copyWith(fontWeight: FontWeight.w500)),
                     SizedBox(
                       height: 20,
                     ),
-                    Text("A 6 digit Verification code has been  send on your Email Address", style: textTheme.titleSmall?.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),),
+                    Text("Password Should be 8 Characters.", style: textTheme.titleSmall?.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),),
                     SizedBox(height: 5,),
-                    _buildOTPVerifyForm(),
+                    _buildResetPasswordForm(),
                     SizedBox(height: 5,),
                     Center(
                       child: Column(
@@ -54,26 +54,23 @@ class _forgot_password_otp_screenState extends State<forgot_password_otp_screen>
     );
   }
 
-  Widget _buildOTPVerifyForm() {
+  Widget _buildResetPasswordForm() {
     return Column(
       children: [
-        PinCodeTextField(
-          length: 6,
-          animationType: AnimationType.scale,
-          keyboardType: TextInputType.number,
-          pinTheme: PinTheme(
-            shape: PinCodeFieldShape.box,
-            borderRadius: BorderRadius.circular(5),
-            fieldHeight: 50,
-            fieldWidth: 40,
-            activeFillColor: Colors.white,
-            inactiveFillColor: Colors.white,
-            selectedFillColor: Colors.white,
+        TextFormField(
+          keyboardType: TextInputType.text,
+          decoration: const InputDecoration(
+            hintText: "Password",
           ),
-          animationDuration: const Duration(milliseconds: 300),
-          backgroundColor: Colors.transparent,
-          enableActiveFill: true,
-          appContext: context,
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        TextFormField(
+          keyboardType: TextInputType.text,
+          decoration: const InputDecoration(
+            hintText: "Confirm Password",
+          ),
         ),
         SizedBox(
           height: 10,
@@ -87,7 +84,7 @@ class _forgot_password_otp_screenState extends State<forgot_password_otp_screen>
   }
 
   void onTapNextButton() {
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>ResetPasswordScreen()));
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>SignInScreen(),), (_)=>false);
   }
 
   void _onTapSignInButton() {
