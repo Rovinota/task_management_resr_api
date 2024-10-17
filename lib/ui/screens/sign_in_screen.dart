@@ -61,6 +61,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return Column(
       children: [
         TextFormField(
+          keyboardType: TextInputType.emailAddress,
           decoration: const InputDecoration(
             hintText: "Email",
           ),
@@ -69,6 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
           height: 10,
         ),
         TextFormField(
+          keyboardType: TextInputType.text,
           decoration: const InputDecoration(
             hintText: "Password",
           ),
