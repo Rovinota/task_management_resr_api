@@ -1,6 +1,6 @@
 # task_management_resr_api
 
-A new Flutter project.
+A Simple Task Management Flutter Application which is created with Rest Api. 
 
 ## Getting Started
 
