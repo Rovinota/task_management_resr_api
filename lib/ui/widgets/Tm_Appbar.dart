@@ -1,61 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:task_management_resr_api/ui/screens/profile_screen.dart';
 import 'package:task_management_resr_api/ui/screens/sign_in_screen.dart';
 
 import '../Utils/AppColors.dart';
 
 class TmAppbar extends StatelessWidget implements PreferredSize {
-  const TmAppbar({super.key});
+  const TmAppbar({super.key,  this.isProfileScreenOpen = false});
+  final bool isProfileScreenOpen;
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: AppColors.themecolor,
-      title: Row(
-        children: [
-          const CircleAvatar(
-            child: Icon(Icons.person),
-            radius: 16,
-            backgroundColor: Colors.white,
+    return GestureDetector(
+      onTap: () {
+        if(isProfileScreenOpen) {
+          return;
+        }
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProfileScreen(),
           ),
-          const SizedBox(
-            width: 16,
-          ),
-          const Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Md. Tanvir Ahmmed",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "tanvir@gmail.com",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ),
-                ),
-              ],
+        );
+      },
+      child: AppBar(
+        backgroundColor: AppColors.themecolor,
+        title: Row(
+          children: [
+            const CircleAvatar(
+              child: Icon(Icons.person),
+              radius: 16,
+              backgroundColor: Colors.white,
             ),
-          ),
-          IconButton(
-              onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SignInScreen(),
+            const SizedBox(
+              width: 16,
+            ),
+            const Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Md. Tanvir Ahmmed",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                      fontSize: 16,
                     ),
-                    (predicate) => false);
-              },
-              icon: Icon(Icons.logout))
-        ],
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    "tanvir@gmail.com",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            IconButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignInScreen(),
+                      ),
+                      (predicate) => false);
+                },
+                icon: Icon(Icons.logout))
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_management_resr_api/ui/widgets/task_card.dart';
 import 'package:task_management_resr_api/ui/widgets/task_summary_card.dart';
 
 class NewTaskScreen extends StatefulWidget {
@@ -23,11 +24,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
             child: ListView.builder(
               itemBuilder: (context, index) {
                 index++;
-                return Card(
-                  color: Colors.greenAccent,
-                  elevation: 0,
-                  child: Center(child: Text("Task no $index"),),
-                );
+                return TaskCard(status: "new",);
               },
               itemCount: 100,
 
